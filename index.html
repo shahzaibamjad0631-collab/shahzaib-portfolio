@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahzaib Amjad — Creative Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0f0f0f;
+    --white: #fafaf8;
+    --gray: #6b6b6b;
+    --light: #f0ede8;
+    --accent: #c8a96e;
+    --border: #e2ddd7;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 6%;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-bottom-color: var(--border); }
+
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--black);
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 6% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content { max-width: 800px; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+  .hero-tag::before {
+    content: ''; width: 24px; height: 1px; background: var(--accent);
+  }
+
+  .hero-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--black);
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards;
+  }
+
+  .hero-heading em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--gray);
+    max-width: 480px;
+    margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards;
+  }
+
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards;
+  }
+
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+    padding: 14px 32px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-secondary {
+    border: 1.5px solid var(--border);
+    color: var(--black);
+    padding: 14px 32px;
+    font-size: 14px; font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--black); transform: translateY(-1px); }
+
+  .hero-stats {
+    position: absolute; bottom: 60px; right: 6%;
+    display: flex; gap: 48px;
+    opacity: 0; animation: fadeUp 0.8s 1s ease forwards;
+  }
+
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--black);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--gray); letter-spacing: 0.5px; margin-top: 4px; }
+
+  /* SECTION BASE */
+  section { padding: 100px 6%; }
+
+  .section-label {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    letter-spacing: -1px;
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 48px;
+  }
+
+  /* ABOUT */
+  .about { background: var(--light); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-text p {
+    font-size: 16px; line-height: 1.8;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .about-skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .skill-item {
+    padding: 20px;
+    background: var(--white);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .skill-name {
+    font-size: 13px; font-weight: 600;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .skill-bar {
+    height: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1s ease;
+  }
+
+  .skill-fill.animated { transform: scaleX(1); }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+
+  .about-card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--black);
+    margin-bottom: 24px;
+  }
+
+  .about-tools {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+
+  .tool-tag {
+    font-size: 12px; font-weight: 500;
+    padding: 6px 14px;
+    background: var(--light);
+    border-radius: 100px;
+    color: var(--black);
+    letter-spacing: 0.3px;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 0;
+  }
+
+  .service-card {
+    padding: 36px 32px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    font-size: 32px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .service-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray);
+    margin-bottom: 20px;
+  }
+
+  .service-items {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+
+  .service-items li {
+    font-size: 13px;
+    color: var(--gray);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .service-items li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  /* PORTFOLIO */
+  .portfolio { background: var(--light); }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .portfolio-item {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--white);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .portfolio-item:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+  .portfolio-item:first-child { grid-column: span 2; }
+
+  .portfolio-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portfolio-thumb .bg1 { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+  .portfolio-thumb .bg2 { background: linear-gradient(135deg, #f5f0e8, #e8dcc8); }
+  .portfolio-thumb .bg3 { background: linear-gradient(135deg, #0d1b2a, #1b2838); }
+  .portfolio-thumb .bg4 { background: linear-gradient(135deg, #2d1b69, #11998e); }
+  .portfolio-thumb .bg5 { background: linear-gradient(135deg, #f8f9fa, #e9ecef); }
+
+  .thumb-inner {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+    padding: 24px;
+  }
+
+  .thumb-emoji { font-size: 36px; }
+  .thumb-mockup {
+    width: 80%;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    height: 8px;
+    margin-top: 8px;
+  }
+
+  .portfolio-info { padding: 20px 24px; }
+
+  .portfolio-cat {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .portfolio-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .portfolio-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+  }
+
+  /* PROCESS */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    counter-reset: steps;
+  }
+
+  .step {
+    padding: 32px 24px;
+    border-top: 2px solid var(--border);
+    transition: border-color 0.3s;
+    counter-increment: steps;
+    position: relative;
+  }
+
+  .step:hover { border-top-color: var(--accent); }
+
+  .step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .step-title {
+    font-size: 16px; font-weight: 600;
+    color: var(--black);
+    margin-bottom: 10px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--gray);
+  }
+
+  /* CONTACT */
+  .contact { background: var(--black); }
+
+  .contact .section-label { color: var(--accent); }
+  .contact .section-title { color: var(--white); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-info p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 40px;
+  }
+
+  .contact-links { display: flex; flex-direction: column; gap: 16px; }
+
+  .contact-link {
+    display: flex; align-items: center; gap: 16px;
+    text-decoration: none;
+    padding: 16px 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    transition: all 0.2s;
+    color: var(--white);
+  }
+
+  .contact-link:hover {
+    border-color: var(--accent);
+    background: rgba(200,169,110,0.05);
+  }
+
+  .contact-link-icon { font-size: 20px; }
+
+  .contact-link-text { font-size: 14px; font-weight: 500; }
+  .contact-link-sub { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+  .form-label {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .form-input, .form-textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s;
+    outline: none;
+    width: 100%;
+  }
+
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-textarea { min-height: 120px; resize: vertical; }
+
+  .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.2); }
+
+  .btn-submit {
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    padding: 16px 32px;
+    font-size: 14px; font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-submit:hover { background: #d4b87a; transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 32px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* DIVIDER */
+  .divider {
+    width: 40px; height: 2px;
+    background: var(--accent);
+    margin-bottom: 48px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 20px 5%; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 5% 60px; }
+    .hero-stats { position: static; margin-top: 48px; flex-wrap: wrap; gap: 32px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-item:first-child { grid-column: span 1; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    section { padding: 70px 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-name">Shahzaib Amjad</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-tag">Creative Designer · Dubai, UAE</div>
+    <h1 class="hero-heading">
+      Design that<br>
+      <em>speaks</em> before<br>
+      words do.
+    </h1>
+    <p class="hero-sub">
+      Print & Digital Design specialist helping brands communicate powerfully. Business cards to full campaigns — I craft visuals that leave an impression.
+    </p>
+    <div class="hero-cta">
+      <a href="#work" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Let's Talk</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">1+</span>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">50+</span>
+      <div class="stat-label">Projects Done</div>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">20+</span>
+      <div class="stat-label">Happy Clients</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Turning ideas into visual reality</h2>
+      <div class="divider"></div>
+      <p>I'm Shahzaib Amjad, a Creative Designer based in Dubai with a passion for crafting meaningful visual experiences. From print materials to digital campaigns, I bring brands to life through thoughtful design.</p>
+      <p>With expertise spanning both print and digital mediums, I understand how design works across different surfaces — whether it's a business card someone holds in their hand or a social media post that stops the scroll.</p>
+
+      <div class="about-skills">
+        <div class="skill-item">
+          <div class="skill-name">Print Design</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Brand Identity</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Digital Design</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Typography</div>
+          <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-visual reveal">
+      <div class="about-card">
+        <div class="about-card-title">Tools & Software</div>
+        <div class="about-tools">
+          <span class="tool-tag">Adobe Illustrator</span>
+          <span class="tool-tag">Adobe Photoshop</span>
+          <span class="tool-tag">Adobe InDesign</span>
+          <span class="tool-tag">Canva</span>
+          <span class="tool-tag">Figma</span>
+          <span class="tool-tag">Blender <span style="font-size:10px;opacity:0.6">(learning)</span></span>
+        </div>
+        <div style="margin-top:32px;padding-top:32px;border-top:1px solid var(--border)">
+          <div class="about-card-title" style="font-size:20px;margin-bottom:16px">Specialties</div>
+          <div class="about-tools">
+            <span class="tool-tag">Business Cards</span>
+            <span class="tool-tag">Roll-up Banners</span>
+            <span class="tool-tag">Logo Design</span>
+            <span class="tool-tag">Flyers</span>
+            <span class="tool-tag">Social Media</span>
+            <span class="tool-tag">Signage</span>
+            <span class="tool-tag">Brochures</span>
+            <span class="tool-tag">Packaging</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal">
+    <div class="section-label">What I Do</div>
+    <h2 class="section-title">Services</h2>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">🖨️</span>
+      <div class="service-title">Print Design</div>
+      <p class="service-desc">High-impact print materials that represent your brand professionally in the real world.</p>
+      <ul class="service-items">
+        <li>Business Cards & Stationery</li>
+        <li>Brochures & Flyers</li>
+        <li>Roll-up Banners & Signage</li>
+        <li>Packaging Design</li>
+        <li>Bill Books & Stamps</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">✦</span>
+      <div class="service-title">Brand Identity</div>
+      <p class="service-desc">Complete brand identity systems that make your business memorable and consistent.</p>
+      <ul class="service-items">
+        <li>Logo Design</li>
+        <li>Brand Guidelines</li>
+        <li>Color & Typography Systems</li>
+        <li>Brand Stationery</li>
+        <li>Brand Refresh</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">📱</span>
+      <div class="service-title">Digital Design</div>
+      <p class="service-desc">Digital visuals that perform — from social media to complete digital campaigns.</p>
+      <ul class="service-items">
+        <li>Social Media Graphics</li>
+        <li>Digital Ads & Banners</li>
+        <li>Email Design</li>
+        <li>Presentations</li>
+        <li>Web Graphics</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">📣</span>
+      <div class="service-title">Paid Advertising</div>
+      <p class="service-desc">Result-driven paid ad campaigns that bring real customers to your business.</p>
+      <ul class="service-items">
+        <li>Facebook & Instagram Ads</li>
+        <li>Ad Creative Design</li>
+        <li>Audience Targeting</li>
+        <li>Campaign Management</li>
+        <li>Performance Reporting</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">🌐</span>
+      <div class="service-title">Web Design</div>
+      <p class="service-desc">Clean, fast and modern websites that look great and convert visitors into customers.</p>
+      <ul class="service-items">
+        <li>Business Websites</li>
+        <li>Landing Pages</li>
+        <li>Portfolio Sites</li>
+        <li>E-Commerce Stores</li>
+        <li>Mobile Responsive Design</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">⚙️</span>
+      <div class="service-title">Custom Software</div>
+      <p class="service-desc">Tailored software solutions designed around your specific business needs and workflow.</p>
+      <ul class="service-items">
+        <li>Web Applications</li>
+        <li>Business Management Tools</li>
+        <li>Inventory Systems</li>
+        <li>Custom Dashboards</li>
+        <li>API Integrations</li>
+      </ul>
+    </div>
+
+    <div class="service-card reveal">
+      <span class="service-icon">🔍</span>
+      <div class="service-title">Website SEO</div>
+      <p class="service-desc">Get found on Google. Improve your website ranking and drive organic traffic that converts.</p>
+      <ul class="service-items">
+        <li>On-Page SEO</li>
+        <li>Keyword Research</li>
+        <li>Technical SEO Audit</li>
+        <li>Content Optimization</li>
+        <li>Monthly Reporting</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="portfolio" id="work">
+  <div class="reveal">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Selected Work</h2>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <div class="portfolio-item reveal">
+      <div class="portfolio-thumb">
+        <div class="thumb-inner bg1" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+          <div class="thumb-emoji">🏢</div>
+          <div style="width:70%;height:6px;background:rgba(200,169,110,0.4);border-radius:4px;margin-top:8px"></div>
+          <div style="width:50%;height:4px;background:rgba(255,255,255,0.1);border-radius:4px;margin-top:6px"></div>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">Brand Identity</div>
+        <div class="portfolio-title">Corporate Branding — Dubai Real Estate</div>
+        <div class="portfolio-desc">Complete brand identity including logo, business cards, letterhead and signage for a premium real estate firm.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item reveal">
+      <div class="portfolio-thumb">
+        <div class="thumb-inner" style="background: linear-gradient(135deg, #f5f0e8, #e8dcc8);">
+          <div style="background:#fff;border-radius:8px;padding:12px 16px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+            <div style="font-size:8px;font-weight:700;color:#333;letter-spacing:1px">SHAHZAIB</div>
+            <div style="width:40px;height:1px;background:#c8a96e;margin:4px 0"></div>
+            <div style="font-size:6px;color:#999">Creative Designer</div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">Print Design</div>
+        <div class="portfolio-title">Premium Business Card Collection</div>
+        <div class="portfolio-desc">Luxury business card designs with foiling, embossing and die-cut finishes.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item reveal">
+      <div class="portfolio-thumb">
+        <div class="thumb-inner" style="background: linear-gradient(135deg, #0d1b2a, #1b2838);">
+          <div style="font-size:28px">📱</div>
+          <div style="display:flex;gap:6px;margin-top:8px">
+            <div style="width:28px;height:28px;background:rgba(200,169,110,0.3);border-radius:4px"></div>
+            <div style="width:28px;height:28px;background:rgba(255,255,255,0.1);border-radius:4px"></div>
+            <div style="width:28px;height:28px;background:rgba(200,169,110,0.2);border-radius:4px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">Digital Design</div>
+        <div class="portfolio-title">Social Media Campaign</div>
+        <div class="portfolio-desc">Complete social media design system for a restaurant chain in Dubai.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item reveal">
+      <div class="portfolio-thumb">
+        <div class="thumb-inner" style="background: linear-gradient(135deg, #2d1b69, #11998e);">
+          <div style="font-size:32px">🏷️</div>
+          <div style="width:60%;height:5px;background:rgba(255,255,255,0.2);border-radius:3px;margin-top:8px"></div>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">Print + Digital</div>
+        <div class="portfolio-title">Event Branding — UAE National Day</div>
+        <div class="portfolio-desc">Full event branding including banners, social posts, invitations and stage backdrop.</div>
+      </div>
+    </div>
+
+    <div class="portfolio-item reveal">
+      <div class="portfolio-thumb">
+        <div class="thumb-inner" style="background: linear-gradient(135deg, #f8f9fa, #dee2e6);">
+          <div style="background:#fff;width:80%;border-radius:6px;padding:16px;box-shadow:0 2px 16px rgba(0,0,0,0.08)">
+            <div style="width:100%;height:6px;background:#333;border-radius:3px;margin-bottom:6px"></div>
+            <div style="width:70%;height:4px;background:#c8a96e;border-radius:3px;margin-bottom:6px"></div>
+            <div style="width:90%;height:3px;background:#eee;border-radius:3px;margin-bottom:4px"></div>
+            <div style="width:80%;height:3px;background:#eee;border-radius:3px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">Print Design</div>
+        <div class="portfolio-title">Corporate Brochure Design</div>
+        <div class="portfolio-desc">12-page company profile brochure with infographics and photography layout.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="reveal">
+    <div class="section-label">How I Work</div>
+    <h2 class="section-title">My Process</h2>
+  </div>
+
+  <div class="process-steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Discover</div>
+      <div class="step-desc">Understanding your brand, goals, audience and what makes you different from competitors.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Concept</div>
+      <div class="step-desc">Creating initial concepts and mood boards. Exploring directions before committing to one path.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Design</div>
+      <div class="step-desc">Developing the chosen direction into polished, production-ready designs with attention to every detail.</div>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Deliver</div>
+      <div class="step-desc">Providing all final files in required formats — print-ready PDFs, web files, and everything in between.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's work<br><em style="font-style:italic;color:var(--accent)">together.</em></h2>
+      <p>Have a project in mind? Whether it's a single business card or a complete brand identity — I'd love to hear about it.</p>
+
+      <div class="contact-links">
+        <a href="mailto:captainib631@gmail.com" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          <div>
+            <div class="contact-link-text">captainib631@gmail.com</div>
+            <div class="contact-link-sub">Email me anytime</div>
+          </div>
+        </a>
+        <a href="https://wa.me/971581464106" class="contact-link">
+          <span class="contact-link-icon">💬</span>
+          <div>
+            <div class="contact-link-text">+971 58 146 4106</div>
+            <div class="contact-link-sub">WhatsApp — fast response</div>
+          </div>
+        </a>
+        <div class="contact-link" style="cursor:default">
+          <span class="contact-link-icon">📍</span>
+          <div>
+            <div class="contact-link-text">Dubai, UAE</div>
+            <div class="contact-link-sub">Available for remote work worldwide</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" class="form-input" placeholder="John Smith">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="john@company.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Project Type</label>
+        <input type="text" class="form-input" placeholder="e.g. Business Card, Logo, Social Media...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Tell me about your project..."></textarea>
+      </div>
+      <button class="btn-submit">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Shahzaib Amjad</div>
+  <div class="footer-copy">© 2025 · Creative Designer · Dubai, UAE</div>
+</footer>
+
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+          // Animate skill bars
+          entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+            bar.classList.add('animated');
+          });
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
